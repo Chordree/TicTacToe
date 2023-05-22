@@ -1,6 +1,6 @@
 # this version includes multiplayer and AI
-# revise how to print matrix form a list and how to also print the transpose
-# see how to use for break.. else block
+# the AI in this version is just a dummy AI see smarter implementation in the OOP version 
+
 import random
 
 board = ['-' for i in range(9)]
