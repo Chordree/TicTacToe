@@ -6,9 +6,6 @@ import random
 class Player:
     def __init__(self, letter):
         self.letter = letter
-    # see if this function should be here .. it is not necessary
-    # def get_move(self, game):
-    #     pass
 
 
 class HumanPlayer(Player):
@@ -42,6 +39,7 @@ class AiPlayer(Player):
         return choice
 
 
+# TODO: complete this unbeatable AI using minimax algorithm
 class SuperAiPlayer(Player):
     def __init__(self, letter):
         super().__init__(letter)

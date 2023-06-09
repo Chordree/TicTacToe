@@ -8,7 +8,7 @@ class TicTac:
         for row in [self.board[i*3:(i+1)*3] for i in range(3)]:
             print('|'.join(row))  # remove the straight lines by the side they are just for the edges
 
-    # check what static methods do.. noticed it doesnt take self variable
+    # check what static methods do.. notice it doesnt take self variable and class parameter 
     @staticmethod
     def print_board_nums():
         num_board = [[str(i+1) for i in range(j*3, (j+1)*3)] for j in range(3)]
@@ -24,8 +24,7 @@ class TicTac:
                 moves.append(i)
         return moves
 # check the major diff btw this functions above and below this line
-    # think the one below returns a boolean True if there is still an empty port
-    # change the port to spot later on
+    # notice the one below returns a boolean True if there is still an empty slot
     def empty_slots(self):
         return '_' in self.board
 
@@ -33,7 +32,7 @@ class TicTac:
         return len(self.available_moves())
         #  or return self.board.count('_') will also work inplace of the above
 
-    # see if this should be renamed to get_move compare with get_move in the player module
+    
     def make_move(self, position, letter):
         if self.board[position] == '_':
             self.board[position] = letter
@@ -41,7 +40,7 @@ class TicTac:
                 self.current_winner = letter
             return True
         return False
-# check the maths and the logic behind this winning conditions
+# check the maths and the logic behind these winning conditions used in the list comp
     def winner(self, pos, letter):
         row_index = pos // 3
         row = self.board[row_index*3: (row_index+1)*3]
@@ -65,7 +64,7 @@ def play(game, x_player, o_player, print_game=True):
         game.print_board_nums()
         #  this function was only used once to show port numbers of different positions
 
-    letter = 'x'  # starting letter ..see to this later
+    letter = 'x'  # initailizing letter ..for the first choice in the while loop
 
     while game.empty_slots():
         if letter == 'o':
@@ -74,8 +73,8 @@ def play(game, x_player, o_player, print_game=True):
             choice = x_player.get_move(game)
 
         # include function to add player name instead of playerx and player o"s turn
-        # see wether a fuction is automatically set to true
-        if game.make_move(choice, letter):  # see why the if make_move is working there
+
+        if game.make_move(choice, letter):  # study why the if game.make_move() is working here
             if print_game:
                 print(letter, f'places his game in port {choice +1}')
                 game.print_board()
@@ -86,8 +85,7 @@ def play(game, x_player, o_player, print_game=True):
                     print(f'player {letter} has won the game')
                 return letter
 
-
-        # see how this works
+        # notice this oneliner if else condition 
         letter = 'o' if letter == 'x' else 'x'
         #  # same as the below
         # if letter == 'x':
@@ -100,13 +98,12 @@ def play(game, x_player, o_player, print_game=True):
     if print_game:
          print('it is a tie ')
 
-# add some more functionalities to switch playmode and continue playing, during tie and quiting when done
 def set_mode():
     mode = input('pls enter game mode, m for multiplayer or c to play with AI: ').upper()
     while mode not in ['M', 'C']:
         mode = input('pls enter game mode, m for multiplayer or c to paly with AI: ').upper()
     return mode
-game_type =  initial_game_type = set_mode()
+game_type = set_mode()
 
 def main(game_type):
 
@@ -128,12 +125,13 @@ def main(game_type):
         if replay == 'Y':
             main(game_type)
         elif replay != 'Q':
-            game_type = set_mode()
-            main(game_type)
+            new_game_type = set_mode()
+            main(new_game_type)
         break
 
 # Todo: add player names .. and set mode to not start entirely from the play mode
 #  add time.sleep effect so computer doesnt just play immediately
+# add superAI player using mimimax 
 if __name__ == '__main__':
     main(game_type)
 
