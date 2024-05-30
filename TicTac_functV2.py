@@ -123,3 +123,5 @@ while True:
 #  train AI to play better ...
 #  also add a main block and switching play mode
 #  for multiplayer add switching of turn of who plays first ..after each mode
+print('this is a new line')
+print('another line')
